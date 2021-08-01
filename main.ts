@@ -35,22 +35,22 @@ namespace CanSat {
     //% block
     export function transmitViaUsb() {
         // Tx is the first parameter, and Rx the second.
-        // Default Baudrate is 115,200 and is set statically.
+        // Default Baudrate is 9600 and is set statically.
         let tx = SerialPin.USB_TX;
         let rx = SerialPin.USB_RX;
 
-        serial.redirect(tx, rx, BaudRate.BaudRate115200);
+        serial.redirect(tx, rx, BaudRate.BaudRate9600);
         setUpSerial = true;
     }
 
     //% block
     export function transmitViaApc220() {
         // Tx is the first parameter, and Rx the second.
-        // Default Baudrate is 115,200 and is set statically.
+        // Default Baudrate is 9600 and is set statically.
         let tx = SerialPin.P13
         let rx = SerialPin.P14
 
-        serial.redirect(tx, rx, BaudRate.BaudRate115200);
+        serial.redirect(tx, rx, BaudRate.BaudRate9600);
         setUpSerial = true;
 
     }
