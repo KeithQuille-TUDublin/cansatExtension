@@ -8,8 +8,8 @@
  *      ------------------------------------------------------
  *      Pin 0   -   Analogue in - External Temperature Sensor
  *      Pin 1   -   Analogue in - External Pressure Sensor
- *      Pin 12  -   Tx              APC220
- *      Pin 13  -   Rx              APC220
+ *      Pin 13  -   Tx              APC220
+ *      Pin 14  -   Rx              APC220
  *      ------------------------------------------------------
  */
 
@@ -47,8 +47,8 @@ namespace CanSat {
     export function transmitViaApc220() {
         // Tx is the first parameter, and Rx the second.
         // Default Baudrate is 115,200 and is set statically.
-        let tx = SerialPin.P12
-        let rx = SerialPin.P13
+        let tx = SerialPin.P13
+        let rx = SerialPin.P14
 
         serial.redirect(tx, rx, BaudRate.BaudRate115200);
         setUpSerial = true;
