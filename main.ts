@@ -1,13 +1,13 @@
 /**
  *      CSinc Cansat extension
- *      V1.2
+ *      V1.3
  *      Developed by CSinc
  * 
  * 
  *      Notes (Reserved Pins):
  *      ------------------------------------------------------
- *      Pin 0   -   Analogue in - External Temperature Sensor
- *      Pin 1   -   Analogue in - External Pressure Sensor
+ *      Pin 4   -   Analogue in - External Temperature Sensor
+ *      Pin 5   -   Analogue in - External Pressure Sensor
  *      Pin 13  -   Tx              APC220
  *      Pin 14  -   Rx              APC220
  *      ------------------------------------------------------
@@ -46,7 +46,7 @@ namespace CanSat {
     //% block
     export function transmitViaApc220() {
         // Tx is the first parameter, and Rx the second.
-        // Default Baudrate is 9600 and is set statically.
+        // Default Baudrate is 115,200 and is set statically.
         let tx = SerialPin.P13
         let rx = SerialPin.P14
 
@@ -62,8 +62,8 @@ namespace CanSat {
             //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
 
             // KQ more to do
-            pressureMilliBars = pins.analogReadPin(AnalogPin.P1);
-            externalTemp = pins.analogReadPin(AnalogPin.P0);
+            pressureMilliBars = pins.analogReadPin(AnalogPin.P5);
+            externalTemp = pins.analogReadPin(AnalogPin.P4);
             metersAboveSeaLevel = -1;
 
 
