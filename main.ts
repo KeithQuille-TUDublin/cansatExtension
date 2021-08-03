@@ -35,7 +35,7 @@ namespace CanSat {
     //% block
     export function transmitViaUsb() {
         // Tx is the first parameter, and Rx the second.
-        // Default Baudrate is 9600 and is set statically.
+        // Default Baudrate is 115,200 and is set statically.
         let tx = SerialPin.USB_TX;
         let rx = SerialPin.USB_RX;
 
@@ -106,8 +106,8 @@ namespace CanSat {
             //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
 
             // KQ more to do
-            pressureMilliBars = pins.analogReadPin(AnalogPin.P1);
-            externalTemp = pins.analogReadPin(AnalogPin.P0);
+            pressureMilliBars = pins.analogReadPin(AnalogPin.P5);
+            externalTemp = pins.analogReadPin(AnalogPin.P4);
             metersAboveSeaLevel = -1;
 
 
