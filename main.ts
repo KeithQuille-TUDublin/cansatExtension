@@ -62,9 +62,9 @@ namespace CanSat {
             //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
 
             // KQ more to do
-            //pressureMilliBars = pins.analogReadPin(AnalogPin.P10);
-            //externalTemp = pins.analogReadPin(AnalogPin.P4);
-            metersAboveSeaLevel = -1;
+            pressureMilliBars = pins.analogReadPin(AnalogPin.P10);
+            externalTemp = pins.analogReadPin(AnalogPin.P4);
+            metersAboveSeaLevel = externalTemp * 2;
 
 
             let dataToSend: string = externalTemp + ";" +
@@ -106,9 +106,9 @@ namespace CanSat {
             //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
 
             // KQ more to do
-            //pressureMilliBars = pins.analogReadPin(AnalogPin.P10);
-            //externalTemp = pins.analogReadPin(AnalogPin.P4);
-            metersAboveSeaLevel = -1;
+            pressureMilliBars = pins.analogReadPin(AnalogPin.P10);
+            externalTemp = pins.analogReadPin(AnalogPin.P4);
+            metersAboveSeaLevel = externalTemp * 2;
 
 
             let dataToSend: string = externalTemp + ";" +
