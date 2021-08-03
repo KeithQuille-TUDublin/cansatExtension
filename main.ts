@@ -1,15 +1,15 @@
 /**
  *      CSinc Cansat extension
- *      V1.32
+ *      V1.1
  *      Developed by CSinc
  * 
  * 
  *      Notes (Reserved Pins):
  *      ------------------------------------------------------
- *      Pin 4   -   Analogue in - External Temperature Sensor
- *      Pin 5   -   Analogue in - External Pressure Sensor
- *      Pin 13  -   Tx              APC220
- *      Pin 14  -   Rx              APC220
+ *      Pin 0   -   Analogue in - External Temperature Sensor
+ *      Pin 1   -   Analogue in - External Pressure Sensor
+ *      Pin 12  -   Tx              APC220
+ *      Pin 13  -   Rx              APC220
  *      ------------------------------------------------------
  */
 
@@ -33,37 +33,34 @@ namespace CanSat {
 
 
     //% block
-    export function transmitViaUsb() {
+    export function setUpTranmission(tx: SerialPin, rx: SerialPin) {
         // Tx is the first parameter, and Rx the second.
         // Default Baudrate is 115,200 and is set statically.
-        let tx = SerialPin.USB_TX;
-        let rx = SerialPin.USB_RX;
 
-        serial.redirect(tx, rx, BaudRate.BaudRate115200);
-        setUpSerial = true;
+        if (
+            (tx == SerialPin.P0 && rx == SerialPin.P1)
+            || (tx == SerialPin.USB_TX && rx == SerialPin.USB_RX)
+        ) {
+            serial.redirect(tx, rx, BaudRate.BaudRate115200);
+            setUpSerial = true;
+        }
+        else {
+            basic.showString("Error - Please use specified outputs for transmission.");
+        }
+
+
+
     }
 
     //% block
-    export function transmitViaApc220() {
-        // Tx is the first parameter, and Rx the second.
-        // Default Baudrate is 115,200 and is set statically.
-        let tx = SerialPin.P13
-        let rx = SerialPin.P14
-
-        serial.redirect(tx, rx, BaudRate.BaudRate115200);
-        setUpSerial = true;
-
-    }
-
-    //% block
-    export function sendCansatDataV1() {
+    export function sendCansatData() {
 
         if (setUpSerial) {
             //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
 
             // KQ more to do
-            pressureMilliBars = pins.analogReadPin(AnalogPin.P5);
-            externalTemp = pins.analogReadPin(AnalogPin.P4);
+            pressureMilliBars = pins.analogReadPin(AnalogPin.P1);
+            externalTemp = pins.analogReadPin(AnalogPin.P0);
             metersAboveSeaLevel = -1;
 
 
@@ -78,16 +75,12 @@ namespace CanSat {
                 input.lightLevel() + ";" +
                 input.rotation(Rotation.Pitch) + ";" +
                 input.rotation(Rotation.Roll) + ";" +
-                input.magneticForce(Dimension.Strength) + ";" +
-                "NA_V1" + ";" +
-                "NA_V1";
+                input.magneticForce(Dimension.Strength);
 
 
             serial.writeLine(dataToSend);
             showLed();
-            basic.pause(100);
-
-
+            basic.pause(500);
 
 
         }
@@ -97,49 +90,6 @@ namespace CanSat {
         }
 
     }
-
-
-    //% block
-    export function sendCansatDataV2() {
-
-        if (setUpSerial) {
-            //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
-
-            // KQ more to do
-            pressureMilliBars = pins.analogReadPin(AnalogPin.P5);
-            externalTemp = pins.analogReadPin(AnalogPin.P4);
-            metersAboveSeaLevel = -1;
-
-
-            let dataToSend: string = externalTemp + ";" +
-                pressureMilliBars + ";" +
-                metersAboveSeaLevel + ";" +
-                input.temperature() + ";" +
-                input.acceleration(Dimension.X) + ";" +
-                input.acceleration(Dimension.Y) + ";" +
-                input.acceleration(Dimension.Z) + ";" +
-                input.acceleration(Dimension.Strength) + ";" +
-                input.lightLevel() + ";" +
-                input.rotation(Rotation.Pitch) + ";" +
-                input.rotation(Rotation.Roll) + ";" +
-                input.magneticForce(Dimension.Strength) + ";" +
-                input.logoIsPressed() + ";" +
-                input.soundLevel();
-
-
-            serial.writeLine(dataToSend);
-            showLed();
-            basic.pause(100);
-
-        }
-        else {
-            basic.showString("Error - Please set up transmission");
-
-        }
-
-    }
-
-
 
     function showLed() {
         if (sendingDot == 1) {
