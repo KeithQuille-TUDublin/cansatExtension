@@ -39,7 +39,7 @@ namespace CanSat {
         let tx = SerialPin.USB_TX;
         let rx = SerialPin.USB_RX;
 
-        serial.redirect(tx, rx, BaudRate.BaudRate9600);
+        serial.redirect(tx, rx, BaudRate.BaudRate115200);
         setUpSerial = true;
     }
 
@@ -50,7 +50,7 @@ namespace CanSat {
         let tx = SerialPin.P13
         let rx = SerialPin.P14
 
-        serial.redirect(tx, rx, BaudRate.BaudRate9600);
+        serial.redirect(tx, rx, BaudRate.BaudRate115200);
         setUpSerial = true;
 
     }
