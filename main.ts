@@ -7,7 +7,7 @@
  *      Notes (Reserved Pins):
  *      ------------------------------------------------------
  *      Pin 4   -   Analogue in - External Temperature Sensor
- *      Pin 10   -   Analogue in - External Pressure Sensor
+ *      Pin 10   -  Analogue in - External Pressure Sensor
  *      Pin 13  -   Tx              APC220
  *      Pin 14  -   Rx              APC220
  *      ------------------------------------------------------
@@ -62,8 +62,8 @@ namespace CanSat {
             //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
 
             // KQ more to do
-            pressureMilliBars = pins.analogReadPin(AnalogPin.P10);
-            externalTemp = pins.analogReadPin(AnalogPin.P4);
+            //pressureMilliBars = pins.analogReadPin(AnalogPin.P10);
+            //externalTemp = pins.analogReadPin(AnalogPin.P4);
             metersAboveSeaLevel = -1;
 
 
@@ -106,8 +106,8 @@ namespace CanSat {
             //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
 
             // KQ more to do
-            pressureMilliBars = pins.analogReadPin(AnalogPin.P10);
-            externalTemp = pins.analogReadPin(AnalogPin.P4);
+            //pressureMilliBars = pins.analogReadPin(AnalogPin.P10);
+            //externalTemp = pins.analogReadPin(AnalogPin.P4);
             metersAboveSeaLevel = -1;
 
 
