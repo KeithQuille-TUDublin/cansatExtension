@@ -1,6 +1,6 @@
 /**
  *      CSinc Cansat extension
- *      V1.36
+ *      V1.36               (V5 offline - internal use only)
  *      Developed by CSinc
  * 
  * 
