@@ -59,12 +59,9 @@ namespace CanSat {
     export function sendCansatDataV1() {
 
         if (setUpSerial) {
-            //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
-
-            // KQ more to do
-            pressureMilliBars = pins.analogReadPin(AnalogPin.P1);
-            externalTemp = pins.analogReadPin(AnalogPin.P0);
-            metersAboveSeaLevel = externalTemp * 2;
+            pressureMilliBars = getExternalPressure();
+            metersAboveSeaLevel = getAltitude(pressureMilliBars);
+            externalTemp = getExternalTemperature();
 
 
             let dataToSend: string = externalTemp + ";" +
@@ -103,12 +100,11 @@ namespace CanSat {
     export function sendCansatDataV2() {
 
         if (setUpSerial) {
-            //pressureMilliBars = (pins.analogReadPin(AnalogPin.P0) / 1024) + 0.095) / 0.0009;
 
-            // KQ more to do
-            pressureMilliBars = pins.analogReadPin(AnalogPin.P1);
-            externalTemp = pins.analogReadPin(AnalogPin.P0);
-            metersAboveSeaLevel = externalTemp * 2;
+            pressureMilliBars = getExternalPressure();
+            metersAboveSeaLevel = getAltitude(pressureMilliBars);
+            externalTemp = getExternalTemperature();
+            
 
 
             let dataToSend: string = externalTemp + ";" +
@@ -136,6 +132,27 @@ namespace CanSat {
             basic.showString("Error - Please set up transmission");
 
         }
+
+    }
+
+    function getExternalPressure(){
+        // Calibration based on formula in https://esero.ie/wp-content/uploads/2018/12/CanSat-UserManual-2019.pdf
+        let mb = ((pins.analogReadPin(AnalogPin.P1) / 1024) + 0.095) / 0.0009;
+        return mb;
+    }
+
+    function getExternalTemperature(){
+        let tempAI = pins.analogReadPin(AnalogPin.P0);
+        // below calculation taken from https://youtu.be/JQ8HjkRuTCY
+        let temp = ((tempAI * (3.0 / 1023))*(-16.573)) + 51.702;
+        return temp;
+    }
+
+    function getAltitude(pressureMilliBars: number){
+        let alt = pressureMilliBars;
+
+
+        return alt;
 
     }
 
