@@ -158,7 +158,7 @@ namespace CanSat {
         let step4 = step3 / 5.25588;
         let step5 = Math.pow(10, step4) - 1;
         let alt = step5 /-0.0000225577;
-        return alt;
+        return Math.round(alt * 100) / 100;
     }
 
 
