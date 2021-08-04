@@ -160,6 +160,8 @@ namespace CanSat {
         // issue is the below line:
         // https://forum.makecode.com/t/math-pow-floating-point-issues/6305
         let step5 = Math.pow(10, step4) - 1;
+
+        
         let alt = step5 / (0 - 0.0000225577);
         return step5;
     }
