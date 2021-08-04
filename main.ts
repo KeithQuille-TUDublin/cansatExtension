@@ -1,6 +1,6 @@
 /**
  *      CSinc Cansat extension
- *      V1.34
+ *      V1.36
  *      Developed by CSinc
  * 
  * 
@@ -138,14 +138,14 @@ namespace CanSat {
     function getExternalPressure(){
         // Calibration based on formula in https://esero.ie/wp-content/uploads/2018/12/CanSat-UserManual-2019.pdf
         let mb = ((pins.analogReadPin(AnalogPin.P1) / 1024) + 0.095) / 0.0009;
-        return mb;
+        return Math.round(mb * 100) / 100;
     }
 
     function getExternalTemperature(){
         let tempAI = pins.analogReadPin(AnalogPin.P0);
         // below calculation taken from https://youtu.be/JQ8HjkRuTCY
-        let temp = ((tempAI * (3.0 / 1023))*(-16.573)) + 51.702;
-        return temp;
+        let temp = ((tempAI * (5.0 / 1023))*(-16.573)) + 51.702;
+        return Math.round(temp *100) / 100;
     }
 
     function getAltitude(pressureMilliBars: number){
