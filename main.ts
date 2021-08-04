@@ -1,6 +1,6 @@
 /**
  *      CSinc Cansat extension
- *      V1.36               (V5 offline - internal use only)
+ *      V1.37               (V6 offline - internal use only)
  *      Developed by CSinc
  * 
  * 
@@ -8,8 +8,8 @@
  *      ------------------------------------------------------
  *      Pin 0   -   Analogue in - External Temperature Sensor
  *      Pin 1   -   Analogue in - External Pressure Sensor
- *      Pin 13  -   Tx              APC220
- *      Pin 14  -   Rx              APC220
+ *      Pin 2   -   Tx              APC220
+ *      Pin 13  -   Rx              APC220
  *      ------------------------------------------------------
  */
 
@@ -47,8 +47,8 @@ namespace CanSat {
     export function transmitViaApc220() {
         // Tx is the first parameter, and Rx the second.
         // Default Baudrate is 115,200 and is set statically.
-        let tx = SerialPin.P13
-        let rx = SerialPin.P14
+        let tx = SerialPin.P2
+        let rx = SerialPin.P13
 
         serial.redirect(tx, rx, BaudRate.BaudRate9600);
         setUpSerial = true;
