@@ -154,11 +154,11 @@ namespace CanSat {
         // appendix 7
         let step1 = pressureMilliBars * 100;
         let step2 = step1 / 101325;
-        let step3 = Math.log(step2) / Math.log(10);             // goood to here
-        let step4 = step3 / 5.25588;
+        let step3 = Math.log(step2) / Math.log(10);             
+        let step4 = step3 / 5.25588;                    // goood to here
         let step5 = Math.pow(10, step4) - 1;
         let alt = step5 / (0 - 0.0000225577);
-        return step4;
+        return step5;
     }
 
 
