@@ -152,13 +152,13 @@ namespace CanSat {
         // Calculation taken from cansat user manual 
         // https://esero.ie/wp-content/uploads/2018/12/CanSat-UserManual-2019.pdf
         // appendix 7
-        let step1 = pressureMilliBars * 100;
-        let step2 = step1/101325;
+        let step1 = 995 * 100;
+        let step2 = step1 / 101325;
         let step3 = Math.log(step2) / Math.log(10);
         let step4 = step3 / 5.25588;
         let step5 = Math.pow(10, step4) - 1;
         let alt = step5 / (-0.0000225577);
-        return Math.round(alt * 100) / 100;;
+        return Math.round(alt * 100) / 100;
 
     }
 
