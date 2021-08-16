@@ -1,6 +1,6 @@
 /**
  *      CSinc Cansat extension
- *      V1.37               (V6 offline - internal use only)
+ *      V1.38               (V6 offline - internal use only)
  *      Developed by CSinc
  * 
  * 
@@ -152,18 +152,23 @@ namespace CanSat {
         // Calculation taken from cansat user manual 
         // https://esero.ie/wp-content/uploads/2018/12/CanSat-UserManual-2019.pdf
         // appendix 7
+        //
+        // issue is the below line:
+        // https://forum.makecode.com/t/math-pow-floating-point-issues/6305
+        // 
+        // Due to the above issues with Math.pow - this function just returns 
+        // -1 and the below calculations are moved to the corrosponding app. 
+        //
+        /*
         let step1 = pressureMilliBars * 100;
         let step2 = step1 / 101325;
         let step3 = Math.log(step2) / Math.log(10);             
-        let step4 = step3 / 5.25588;                    
-
-        // issue is the below line:
-        // https://forum.makecode.com/t/math-pow-floating-point-issues/6305
-        let step5 = Math.pow(10, step4) - 1;
-
-        
+        let step4 = step3 / 5.25588;                   
+        let step5 = Math.pow(10, step4) - 1;            // Issue is that Math.pow on micro:bit does not work with decimal numbers
         let alt = step5 / (0 - 0.0000225577);
-        return step5;
+        return alt;
+        */
+        return -1;
     }
 
 
