@@ -82,7 +82,7 @@ namespace CanSat {
 
             serial.writeLine(dataToSend);
             showLed();
-            basic.pause(100);
+            basic.pause(500);
 
 
 
